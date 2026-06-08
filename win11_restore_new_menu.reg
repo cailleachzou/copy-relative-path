@@ -1,0 +1,6 @@
+Windows Registry Editor Version 5.00
+
+; 恢复 Win11 默认新右键菜单（撤销经典菜单）
+; 重启资源管理器或注销后生效
+
+[-HKEY_CURRENT_USER\Software\Classes\CLSID\{86ca1aa0-34aa-4e8b-a509-50c905bae2a2}]
