@@ -33,13 +33,14 @@ win11_restore_new_menu.reg       ← 撤销，恢复 Win11 新菜单
 
 ```
 HKEY_CLASSES_ROOT\Directory\shell\copyrelativepath
+HKEY_CLASSES_ROOT\*\shell\copyrelativepath
 ```
 
 ## 原理
 
 | 组件 | 说明 |
 |------|------|
-| `copy_relative_path.reg` | 在 `HKCR\Directory\shell` 下注册右键菜单项，调用 PowerShell 完成路径替换并写入剪贴板 |
+| `copy_relative_path.reg` | 在 `HKCR\Directory\shell` 和 `HKCR\*\shell` 下注册右键菜单项（文件夹 + 所有文件类型），调用 PowerShell 完成路径替换并写入剪贴板 |
 | `win11_restore_classic_menu.reg` | 设置 `{86ca1aa0-34aa-4e8b-a509-50c905bae2a2}` 注册表键，告诉 Win11 默认使用经典右键菜单 |
 | `restart_explorer.bat` | 重启 `explorer.exe` 使注册表改动立即生效 |
 

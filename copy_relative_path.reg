@@ -6,3 +6,10 @@ Windows Registry Editor Version 5.00
 
 [HKEY_CLASSES_ROOT\Directory\shell\copyrelativepath\command]
 @="powershell.exe -WindowStyle Hidden -Command \"($('%1') -replace [regex]::Escape($env:USERPROFILE), '%%USERPROFILE%%') | Set-Clipboard\""
+
+[HKEY_CLASSES_ROOT\*\shell\copyrelativepath]
+@="复制相对路径"
+"Icon"="imageres.dll,-53"
+
+[HKEY_CLASSES_ROOT\*\shell\copyrelativepath\command]
+@="powershell.exe -WindowStyle Hidden -Command \"($('%1') -replace [regex]::Escape($env:USERPROFILE), '%%USERPROFILE%%') | Set-Clipboard\""
