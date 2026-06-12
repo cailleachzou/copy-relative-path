@@ -5,6 +5,7 @@
 ## 功能
 
 - 右键文件或文件夹 →「复制相对路径」
+- **Ctrl+Shift+C** 快捷键（需安装 AutoHotkey）— 选中文件直接按快捷键复制
 - 自动将 `C:\Users\YourName\...` 替换为 `%USERPROFILE%\...`
 - 结果直接进剪贴板，无需手动拼接
 
@@ -36,6 +37,33 @@ HKEY_CLASSES_ROOT\Directory\shell\copyrelativepath
 HKEY_CLASSES_ROOT\*\shell\copyrelativepath
 ```
 
+---
+
+## Ctrl+Shift+C 快捷键
+
+右键菜单够用，但有时候手不想离开键盘。装个 AutoHotkey 就能在资源管理器里按 Ctrl+Shift+C 直接复制。
+
+### 安装快捷键
+
+1. 安装 AutoHotkey v2：
+   ```
+   winget install AutoHotkey.AutoHotkey
+   ```
+2. 双击 `install_hotkey.bat`，一键注册开机自启 + 启动监听
+
+### 卸载快捷键
+
+双击 `uninstall_hotkey.bat` 即可。
+
+### 原理
+
+| 文件 | 说明 |
+|------|------|
+| `copy_relative_path_hotkey.ps1` | PowerShell 脚本：通过 COM 获取 Explorer 选中文件，替换用户名，写剪贴板 |
+| `copy_relative_path_hotkey.ahk` | AutoHotkey v2 脚本：注册 Ctrl+Shift+C 全局快捷键 |
+| `install_hotkey.bat` | 注册开机自启（注册表 Run 键）+ 立即启动 |
+| `uninstall_hotkey.bat` | 删除自启项 + 停止进程 |
+
 ## 原理
 
 | 组件 | 说明 |
@@ -47,4 +75,5 @@ HKEY_CLASSES_ROOT\*\shell\copyrelativepath
 ## 兼容性
 
 - Windows 10 / Windows 11
-- 无需安装额外软件
+- 右键菜单：无需额外软件
+- 快捷键：需要 [AutoHotkey v2](https://www.autohotkey.com/)
